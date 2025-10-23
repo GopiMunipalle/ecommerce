@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RazorPay</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </head>
+  <body>
+    <h1>RazorPay Transactions</h1>
+    <input type="text" id="input" />
+    <button id="rzp-button">Pay</button>
+    <script>
+      document.getElementById("rzp-button").onclick = function (e) {
+        e.preventDefault();
+        let input = document.getElementById("input");
+        const inputValue = input.value;
+        let options = {
+          key: "rzp_test_xxx",
+          order_id: inputValue,
+          handler: async function (response) {
+            console.log("payment success", response);
+            console.log(response.razorpay_payment_id);
+            console.log(response.razorpay_signature);
+          },
+        };
+        const rzp = new Razorpay(options);
+        rzp.on("payment.failed", function (response) {
+          console.log(response);
+          alert(response.error.code);
+          alert(response.error.description);
+        });
+        rzp.open();
+      };
+    </script>
+  </body>
+</html>
