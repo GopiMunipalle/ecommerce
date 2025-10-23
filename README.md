@@ -34,7 +34,7 @@ It handles user authentication, cart management, order creation, and Razorpay pa
 ### 1️⃣ Clone the repository
 
 
-git clone https://github.com/yourusername/ecommerce-backend.git
+git clone (https://github.com/GopiMunipalle/ecommerce)
 cd ecommerce-backend
 2️⃣ Install dependencies
 npm install
